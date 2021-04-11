@@ -1,0 +1,16 @@
+
+---
+- name: Let's copy our executable script to remote location, execute script and get result back.
+  sudo: yes
+  hosts: local
+  tasks:
+     - name: stop tomcat
+       command: sh /opt/tomcat/bin/startup.sh 
+ 
+     - name: copy war file
+       copy: src=/var/lib/jenkins/workspace/sample/my-app-1.0-SNAPSHOT.war dest=/opt/tomcat/webapps mode=0777
+
+     - name: start tomcat
+       command: sh /opt/tomcat/bin/shutdown.sh 
+
+
